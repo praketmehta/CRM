@@ -1,0 +1,68 @@
+:root {
+  --color-navy: #1E293B;
+  --color-blue: #3B82F6;
+  --color-sky: #F0F4F8;
+  --color-pale: #F0F4F8;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #F0F4F8;
+  --text-main: #1E293B;
+}
+
+.dark-mode {
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --text-main: #F0F4F8;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  /* Stacks flex items vertically */
+  .responsive-flex-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  /* Make header stack nicely */
+  .responsive-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px;
+  }
+  
+  /* Make nav tabs scroll horizontally */
+  .responsive-nav-tabs {
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+  }
+  
+  .responsive-nav-tabs button {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Make modals fill the screen more */
+  .responsive-modal {
+    width: 95vw !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    padding: 20px !important;
+  }
+  
+  /* Make multi-column grids single column */
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Full width for inputs inside flex forms */
+  .responsive-form-item {
+    width: 100% !important;
+  }
+}
