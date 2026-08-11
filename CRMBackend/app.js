@@ -12,6 +12,15 @@ const taskRoutes = require('./src/routes/taskRoutes');
 app.use(cors());
 app.use(express.json()); 
 
+const path = require('path');
+const fs = require('fs');
+
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
+app.use('/uploads', express.static(uploadsDir));
+
 const authRoutes = require('./src/routes/authRoutes');
 const contactRoutes = require('./src/routes/contactRoutes');
 const dealRoutes = require('./src/routes/dealRoutes');

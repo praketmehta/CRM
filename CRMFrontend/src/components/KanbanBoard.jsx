@@ -67,6 +67,21 @@ export default function KanbanBoard({ isDarkMode, userRole }) {
     }
   };
 
+  const handleExport = async () => {
+    try {
+      const response = await api.get('/deals/export', { responseType: 'blob' });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'deals.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      alert('Failed to export deals');
+    }
+  };
+
   const handleStageChange = async (dealId, newStage) => {
     try {
       await api.put(`/deals/${dealId}`, { stage: newStage });
@@ -172,6 +187,10 @@ export default function KanbanBoard({ isDarkMode, userRole }) {
         </div>
 
         <div style={{ display: 'flex', gap: '10px' }}>
+          <button onClick={handleExport} style={{ padding: '10px 20px', backgroundColor: '#3B82F6', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>
+            Export CSV
+          </button>
+          
           <button onClick={() => { setShowCompanyForm(!showCompanyForm); setShowForm(false); }} style={{ padding: '10px 20px', backgroundColor: showCompanyForm ? '#ff5630' : '#3B82F6', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>
             {showCompanyForm ? 'Cancel' : '+ New Company'}
           </button>
